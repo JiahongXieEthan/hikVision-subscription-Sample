@@ -1,0 +1,12 @@
+{
+  "name": "simple-request-viewer",
+  "version": "1.0.0",
+  "description": "简单的请求数据查看器",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test-api": "node test-api.js"
+  },
+  "dependencies": {}
+}
+
