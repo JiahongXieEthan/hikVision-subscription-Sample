@@ -116,3 +116,40 @@ node test-unsubscribe-all.js --appKey <你的AppKey> --appSecret <你的AppSecre
 - 检查网络连接
 - 查看控制台错误信息
 
+### 回调失败
+
+如果回调失败，可能是海康威视设备无法访问互联网。请按以下步骤排查：
+
+1. **测试网络连通性**
+   
+   在海康威视设备上尝试 ping 回调服务器：
+   ```bash
+   ping <回调服务器地址>
+   ```
+   
+   例如：
+   ```bash
+   ping 32518bohs147.vicp.fun
+   ```
+
+2. **配置 DNS（如果 ping 失败）**
+   
+   如果 ping 失败，可能是 DNS 解析问题。需要将回调服务器的 DNS IP 添加到网络配置文件中：
+   
+   ```bash
+   # 编辑网络配置文件
+   vi /etc/sysconfig/network-scripts/ifcfg-eno3
+   ```
+   
+   在配置文件中添加或修改 DNS 设置：
+   ```bash
+   DNS1=<回调服务器的DNS IP地址>
+   ```
+   
+   保存后重启网络服务：
+   ```bash
+   systemctl restart network
+   ```
+   
+   **注意**: 网络接口名称可能不同（如 `ifcfg-eth0`、`ifcfg-ens33` 等），请根据实际设备情况调整。
+
